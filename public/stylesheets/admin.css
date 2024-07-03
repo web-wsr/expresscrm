@@ -1,0 +1,186 @@
+/* 公共部分样式 */
+.wrapper {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.page-header {
+    padding: 60px 40px;
+    text-align: right;
+    color: #f6f8fa;
+    font-size: 16px;
+    background: url(../images/mercedes-benz-logo-desktop.png) no-repeat;
+    background-position: left;
+    background-size: 518px 128px;
+    background-color: #000000;
+}
+
+#logout {
+    color: #f6f8fa;
+    margin-left: 10px;
+    text-decoration: none;
+}
+
+.page-body {
+    flex: 1;
+    border-top: 1px solid #e4e4e4;
+}
+
+.page-body {
+    display: flex;
+}
+
+.page-aside {
+    width: 240px;
+    border-right: 1px solid #e4e4e4;
+    background-color: #000000;
+}
+
+.page-nav-item {
+    display: block;
+    height: 60px;
+    padding: 10px 20px;
+    line-height: 40px;
+    text-decoration: none;
+    font-size: 14px;
+    color: #999;
+    border-bottom: 1px solid #e4e4e4;
+}
+
+.active {
+    background-color: #f5f5f5;
+}
+
+.page-content {
+    flex: 1;
+    padding: 0 40px;
+    padding-bottom: 40px;
+}
+
+.page-footer {
+    padding: 10px;
+    text-align: center;
+    font-size: 12px;
+    color: #999;
+    background-color: #000000;
+}
+
+/* title和control内容样式 */
+.content-title {
+    height: 60px;
+    padding: 10px 0;
+    line-height: 40px;
+    font-size: 16px;
+}
+
+.content-control {
+    margin: 20px 0;
+}
+
+/* table表格样式 */
+.table-container {
+    margin: 1rem 0;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-container tr {
+    border-top: 1px solid #dfe2e5;
+}
+
+.table-container tr:nth-child(2n) {
+    background-color: #f6f8fa;
+}
+
+.table-container th {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.table-container td,
+.table-container th {
+    border: 1px solid #dfe2e5;
+    padding: 10px 16px;
+    text-align: center;
+}
+
+/* 返回样式 */
+.back {
+    text-decoration: none;
+    color: #000;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+/* form表单样式 */
+.form-item {
+    width: 400px;
+    margin: 20px 0;
+}
+
+.form-input {
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    border: none;
+    outline: 0;
+    padding: 10px;
+    border-bottom: 1px solid #666;
+    font-size: 14px;
+    background-color: #fff;
+}
+
+.form-button {
+    display: block;
+    width: 100%;
+    height: 40px;
+    text-align: center;
+    outline: 0;
+    border: none;
+    font-size: 16px;
+    color: #fff;
+    background-color: black;
+}
+
+/* 列表样式 */
+.content-mainer {
+    display: flex;
+}
+
+/* form-textarea样式 */
+.form-textarea {
+    width: 400px;
+    height: 100px;
+    outline: 0;
+}
+
+.form-section {
+    display: block;
+    width: 450px;
+}
+
+.clue-form {
+    padding: 0 20px;
+    background-color: #e4e4e4;
+}
+
+.log-section {
+    flex: 1;
+    margin-left: 60px;
+    padding: 0 20px;
+    background-color: #e4e4e4;
+}
+
+.log-item {
+    margin-left: 20px 0;
+}
+
+.log-item .log-date {
+    font-size: 16px;
+}
+
+.log-content {
+    font-size: 14px;
+    color: #666;
+}
