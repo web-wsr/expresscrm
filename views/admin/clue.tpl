@@ -65,4 +65,16 @@
         {% endfor %}
     </table>
 </div>
+
+{% if pagination.pageArrary.length > 1%}
+<div class="pagination">
+    {% for val in pagination.pageArrary %}
+    <a class="pagination-item {% if val == pagination.current %} active {% endif%}" href="/admin/clue?page={{val}}">
+        >
+        {{val}}
+    </a>
+    {% endfor %}
+</div>
+{% endif %}
+
 {% endblock %}

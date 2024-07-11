@@ -1,4 +1,5 @@
-const knex = require('./knex');
+const config = require('./../knexfile')
+const knex = require('knex')(config);
 // 基础模型 其实就是添加一些方法供使用，记得暴露出去
 class Base {
     constructor(props) {
@@ -24,6 +25,18 @@ class Base {
 
     delete(id) {
         return knex(this.table).where('id', '=', id).del()
+    }
+
+    count(params = {}) {
+        return knex(this.table).where(params).count('id as sum')
+    }
+
+    knex() {
+        return knex(this.table)
+    }
+
+    where(params) {
+        return knex(this.table).where(params);
     }
 }
 

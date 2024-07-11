@@ -22,10 +22,16 @@
                 <nav class="page-nav">
                     <ul id="page-nav-list">
                         <li id="nav-item" class="nav">
-                            <a id="page-nav-item" class="page-nav-item" href="/admin/user">人员管理</a>
+                            <a id="page-nav-item" class="page-nav-item {% if nav == 'user' %}active{% endif %}"
+                                href="/admin/user">人员管理</a>
                         </li>
                         <li id="nav-item" class="nav">
-                            <a id="page-nav-item" class="page-nav-item" href="/admin/clue">线索管理</a>
+                            <a id="page-nav-item" class="page-nav-item {% if nav == 'role' %}active{% endif %}"
+                                href="/admin/role">角色管理</a>
+                        </li>
+                        <li id="nav-item" class="nav">
+                            <a id="page-nav-item" class="page-nav-item {% if nav == 'clue' %}active{% endif %}"
+                                href="/admin/clue">线索管理</a>
                         </li>
                     </ul>
                 </nav>

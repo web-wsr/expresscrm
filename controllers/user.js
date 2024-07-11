@@ -47,17 +47,19 @@ const userController = {
                 data.created_time_display = formatDate(data.created_time);
                 return data;
             })
+            res.locals.nav = 'user';
             res.render('admin/user.tpl', res.locals)
         } catch (e) {
             res.locals.error = e;
             res.render('error', res.locals)
         }
     },
-    edit: async function (req, res, next) {
+    renderEdit: async function (req, res, next) {
         const id = req.params.id;
         try {
             const users = await User.select({ id })
             res.locals.user = users[0];
+            res.locals.nav = 'user';
             res.render('admin/user_edit.tpl', res.locals)
         } catch (e) {
             res.locals.error = e;
@@ -96,6 +98,7 @@ const userController = {
     },
     // 创建空白表单供填写
     renderUserCreate: function (req, res, next) {
+        res.locals.nav = 'user';
         res.render('admin/user_create.tpl')
     }
 }

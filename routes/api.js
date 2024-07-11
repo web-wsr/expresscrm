@@ -6,6 +6,7 @@ const authController = require('./../controllers/auth');
 
 const clueController = require('./../controllers/clue');
 
+
 /* GET users listing. */
 router.get('/', function (req, res, next) {
   res.send('respond with a resource');
@@ -29,14 +30,17 @@ router.post('/logout', function (req, res, next) {
   });
 });
 
-//添加线索数据路由
+//添加客户线索数据路由
 router.post('/clue', clueController.insert);
 
 // 添加插入跟踪客户线索数据的路由
 router.post('/clue/:id/log', clueController.addLog);
 
 // 添加修改客户线索数据的路由
-router.put('/clue/:id', clueController.upadte);
+router.put('/clue/:id', clueController.update);
+
+
+
 
 
 module.exports = router;
