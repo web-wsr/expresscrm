@@ -21,9 +21,13 @@
             <div class="page-aside">
                 <nav class="page-nav">
                     <ul id="page-nav-list">
-                        <li id="nav-item" class="nav">
+                        <!-- <li id="nav-item" class="nav">
                             <a id="page-nav-item" class="page-nav-item {% if nav == 'user' %}active{% endif %}"
                                 href="/admin/user">人员管理</a>
+                        </li> -->
+                        <li id="nav-item" class="nav">
+                            <a id="page-nav-item" class="page-nav-item {% if nav == 'admin' %}active{% endif %}"
+                                href="/admin/admin">管理员管理</a>
                         </li>
                         <li id="nav-item" class="nav">
                             <a id="page-nav-item" class="page-nav-item {% if nav == 'role' %}active{% endif %}"

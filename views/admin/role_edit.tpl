@@ -12,7 +12,7 @@
     </div>
     <div class="form-item">
         <p class="form-text">展示名称: </p>
-        <input id="rolename" type="text" class="form-input" placeholder="请输入任务名称" value="{{ role.name }}">
+        <input id="roleName" type="text" class="form-input" placeholder="请输入任务名称" value="{{ role.name }}">
     </div>
     <div class="form-item">
         <p class="form-text">描述: </p>
@@ -22,78 +22,32 @@
 </div>
 <div class="form-premission">
     <h1 class="premission-title">权限信息</h1>
-    <div class="premission-content">
-        <h1 class="premission-group">人员管理</h1>
-        <div class="premission-list">
-            <div class="premission-item">
-                <input type="checkbox" id="1" name="checkbox">
-                <label for="1" class="premission-label">角色-列表</label>
-            </div>
-            <div class="premission-item">
-                <input type="checkbox" id="2" name="checkbox">
-                <label for="2" class="premission-label">角色-添加</label>
-            </div>
 
-            <div class="premission-item">
-                <input type="checkbox" id="rolesUpdate" name="premission-checkbox">
-                <label for="rolesUpdate" class="premission-label">角色-编辑</label>
-            </div>
-            <div class="premission-item">
-                <input type="checkbox" id="rolesDelete" name="premission-checkbox">
-                <label for="rolesDelete" class="premission-label">角色-删除</label>
-            </div>
-            <div class="premission-item">
-                <input type="checkbox" id="rolesShow" name="premission-checkbox">
-                <label for="rolesShow" class="premission-label">角色-详情</label>
-            </div>
-            <div class="premission-item">
-                <input type="checkbox" id="personnelList" name="premission-checkbox">
-                <label for="personnelList" class="premission-label">人员-列表</label>
-            </div>
-            <div class="premission-item">
-                <input type="checkbox" id="personnelCreate" name="premission-checkbox">
-                <label for="personnelCreate" class="premission-label">人员-添加</label>
-            </div>
-            <div class="premission-item">
-                <input type="checkbox" id="personnelDelete" name="premission-checkbox">
-                <label for="personnelDelete" class="premission-label">人员-删除</label>
-            </div>
-            <div class="premission-item">
-                <input type="checkbox" id="personnelUpdate" name="premission-checkbox">
-                <label for="personnelUpdate" class="premission-label">人员-编辑</label>
-            </div>
-        </div>
-    </div>
+    {% for group in permissionsTransformAll %}
     <div class="premission-content">
-        <h1 class="premission-group">线索管理</h1>
+        <h1 class="premission-group">{{ group.name }}</h1>
         <div class="premission-list">
+            {% for permission in group.children %}
             <div class="premission-item">
-                <input type="checkbox" id="clueList" name="premission-checkbox">
-                <label for="clueList" class="premission-label">线索-列表</label>
+                <input type="checkbox" id="{{ permission.id }}" class="premission-checkbox" {% if permission.id in
+                    permissions %}checked{% endif %}>
+                <label for="{{ permission.id }}" class="premission-label">{{ permission.name }}</label>
             </div>
-            <div class="premission-item">
-                <input type="checkbox" id="clueTrack" name="premission-checkbox">
-                <label for="clueTrack" class="premission-label">线索-跟踪</label>
-            </div>
-            <div class="premission-item">
-                <input type="checkbox" id="clueCreate" name="premission-checkbox">
-                <label for="clueCreate" class="premission-label">线索-记录添加</label>
-            </div>
-            <div class="premission-item">
-                <input type="checkbox" id="clueUpdate" name="premission-checkbox">
-                <label for="clueUpdate" class="premission-label">线索-客户编辑</label>
-            </div>
+            {% endfor %}
         </div>
     </div>
+    {% endfor %}
 </div>
 
 
 <div class="form-item">
-    <button id="userSubmit" class="form-button">保存角色</button>
+    <input id="roleId" type="text" hidden value="{{role.id}}">
+    <button id="roleSubmit" class="form-button">保存角色</button>
 </div>
 {% endblock %}
 
 <!-- 引入jquery库和js文件 -->
 {% block js %}
 <script src="/javascripts/jquery-3.7.1.min.js"></script>
+<script src="/javascripts/role_edit.js"></script>
 {% endblock %}

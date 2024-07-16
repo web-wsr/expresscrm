@@ -1,5 +1,7 @@
 // 新建权限控制器，定义登录方法和登录页面的渲染规则  JWT的加密算法
 const User = require('./../model/user');
+const userRole = require('./../model/user_role');
+const Role = require('./../model/role');
 const JWT = require('jsonwebtoken');
 // 定义密钥
 const JWT_SECRET = process.env.JWT_SECRET;
@@ -15,20 +17,29 @@ const authController = {
         }
 
         try {
+
             // 搜索匹配的用户
             const users = await User.select({ phone, password });
             //是否该用户存在
             const user = users[0];
+
+            // 第一步：通过user.id获取user_role表中的role_id
+            let roleIds = await userRole.where({ user_id: user.id }).select('role_id');
+            const roleId = roleIds[0].role_id;
+            // 第二步：通过role_id获取role表对应的角色slug
+            let role = await Role.where({ id: roleId }).select('slug');
+            const slug = role[0].slug;
+            console.log(slug);
+            // 返回登录信息
             if (user) {
                 // 将用户信息加密成token,用用户姓名作加密签名
                 // let token = JWT.sign({ user_name: user.name }, JWT_SECRET, { expiresIn: '30d' });
-                // 将用户的电话，密码和id和角色一起加密成token
-                let token = JWT.sign({ user_phone: user.phone, user_password: user.password, user_id: user.id, user_role: user.role, user_name: user.name }, JWT_SECRET, { expiresIn: '30d' });
-                let role = user.role;
+                // 将用户的电话，密码和id和slug一起加密成token
+                let token = JWT.sign({ user_phone: user.phone, user_password: user.password, user_id: user.id, user_name: user.name, slug: slug }, JWT_SECRET, { expiresIn: '30d' });
                 // 加密放置在cookie中
                 res.cookie('token', token, { maxAge: 30 * 24 * 60 * 60 * 1000 });
-                // 返回登录信息
-                res.json({ code: 200, message: '登录成功！', data: { token: token }, role: role })
+
+                res.json({ code: 200, message: '登录成功！', data: { token: token } })
             } else {
                 res.json({ code: 0, data: { msg: '登录失败，没有此用户' } });
             }

@@ -1,3 +1,6 @@
+// 初始化所有权限的数据库逻辑
+// 只是分析获取的数据的结构，并不进行校验
+
 const schema = require('async-validator').default
 const rolePermission = require('./../model/role_permission')
 const PermissionGroup = require('./../model/permission_group')

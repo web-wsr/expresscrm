@@ -36,8 +36,22 @@ const PAGE = {
                     alert(data.message)
                 }
             },
-            error: function (err) {
-                console.log(err);
+            // error: function (err) {
+            //     // console.log(err);
+            //     alert(data.message)
+            // },
+            error: function (xhr, status, error) {
+                if (xhr.status === 403) {
+                    try {
+                        const response = JSON.parse(xhr.responseText);
+                        alert(response.message);
+                    } catch (e) {
+                        // Handle parsing error or non-JSON response
+                        alert('An error occurred while processing your request.');
+                    }
+                } else {
+                    console.log(error);
+                }
             },
             complete: function () {
                 $('#clueSubmit').attr('disabled', false)
@@ -67,8 +81,21 @@ const PAGE = {
                     alert(data.message)
                 }
             },
-            error: function (err) {
-                console.log(err);
+            // error: function (err) {
+            //     console.log(err);
+            // },
+            error: function (xhr, status, error) {
+                if (xhr.status === 403) {
+                    try {
+                        const response = JSON.parse(xhr.responseText);
+                        alert(response.message);
+                    } catch (e) {
+                        // Handle parsing error or non-JSON response
+                        alert('An error occurred while processing your request.');
+                    }
+                } else {
+                    console.log(error);
+                }
             },
             complete: function () {
                 $('#logSubmit').attr('disabled', false)

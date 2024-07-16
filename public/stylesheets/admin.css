@@ -75,6 +75,8 @@
 }
 
 .content-control {
+    display: flex;
+    justify-content: space-between;
     margin: 20px 0;
 }
 
@@ -209,7 +211,7 @@
 }
 
 
-/* 权限样式 */
+/* 角色的权限样式 */
 .premission-title {
     font-size: 16px;
     font-weight: 600;
@@ -236,10 +238,10 @@
 .premission-item {
     display: flex;
     align-items: center;
-    /* 垂直居中 */
+
 }
 
-/* 可选：如果你希望标签紧挨着勾选框 */
+
 .premission-label {
     margin-left: 5px;
 }
@@ -247,4 +249,35 @@
 #userManage {
     display: inline-block;
     margin: 0
+}
+
+/* 管理员的筛选框样式 */
+.content-filter {
+    display: flex;
+    align-items: center;
+}
+
+.filter-input {
+    width: 200px;
+    height: 40px;
+    line-height: 40px;
+    border: none;
+    outline: 0;
+    padding: 10px;
+    border-bottom: 1px solid #666;
+    font-size: 14px;
+    background-color: #fff;
+}
+
+.filter-button {
+    display: block;
+    width: 100px;
+    height: 40px;
+    margin-left: 20px;
+    text-align: center;
+    outline: 0;
+    border: none;
+    font-size: 14px;
+    color: #fff;
+    background-color: black;
 }

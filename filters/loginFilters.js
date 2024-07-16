@@ -18,8 +18,10 @@ module.exports = function (req, res, next) {
                     phone: decode.user_phone,
                     password: decode.user_password,
                     id: decode.user_id,
-                    role: decode.user_role,
+                    // role: decode.user_role,
+                    slug: decode.slug,
                     name: decode.user_name
+
                 }
                 next()
             } else {

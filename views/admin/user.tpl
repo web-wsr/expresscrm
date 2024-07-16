@@ -8,6 +8,7 @@
 <div class="content-table">
     <table class="table-container">
         <trs>
+            <th>ID</th>
             <th>姓名</th>
             <th>电话</th>
             <th>角色</th>
@@ -37,6 +38,7 @@
         </tr> -->
         {% for val in users %}
         <tr>
+            <td>{{val.id}}</td>
             <td>{{val.name}}</td>
             <td>{{val.phone}}</td>
             <td>{{val.role_diplay}}</td>

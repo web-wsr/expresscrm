@@ -23,10 +23,16 @@
             <td>{{val.description}}</td>
             <td>
                 <a href="/admin/role/{{val.id}}/edit">查看</a>
-                <a href="/admin/role/{{val.id}}/edit">删除</a>
+                <a class="delete" data-id="{{val.id}}" href="#">删除</a>
             </td>
         </tr>
         {% endfor%}
     </table>
+
 </div>
+{% endblock %}
+
+{% block js %}
+<script src="/javascripts/jquery-3.7.1.min.js"></script>
+<script src="/javascripts/role_delete.js"></script>
 {% endblock %}

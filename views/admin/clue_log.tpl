@@ -6,7 +6,6 @@
     <a class="back" href="/admin/clue">返回线索列表 >></a>
 </div>
 <div class="content-mainer">
-    {% if userInfo.role == 1 %}
     <div class="form-section clue-form">
         <div class="form-item">
             <span class="form-text">客户名称：{{clue.name}}</span>
@@ -53,7 +52,7 @@
             <button id="clueSubmit" class="form-button">保存</button>
         </div>
     </div>
-    {% endif %}
+
     <div class="log-section">
         <ul class="log-list">
             {% for val in logs %}

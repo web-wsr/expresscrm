@@ -1,10 +1,13 @@
 // 控制器 操作添加线索和线索页面展示的逻辑
 const Clue = require('./../model/clue');
+
 const { formatDate } = require('./../utils/date');
 
 // 增加引入 clueLog 和 User的用户模型
 const ClueLog = require('./../model/log');
 const User = require('./../model/user');
+const userRole = require('./../model/user_role');
+const Role = require('./../model/role');
 const log = require('./../model/log');
 
 
@@ -35,19 +38,22 @@ const clueController = {
     show: async function (req, res, next) {
         try {
             // const clues = await Clue.all();
-            const role = res.locals.userInfo.role;
+            const slug = res.locals.userInfo.slug;
             const user_id = res.locals.userInfo.id;
             const page = req.query.page || 1;
             const limit = req.query.limit || 10;
             let pagination = { page, limit }
-            console.log(role, user_id);
+            console.log(slug, user_id);
             let params = {};
-            if (role == 2) {
+            if (slug == 'sales') {
                 params.user_id = user_id;
             }
+            // params.user_id = user_id;
+            console.log(params);
             const count = await Clue.count(params);
             const sum = count[0].sum;
             const clues = await Clue.joinUser(params, pagination);
+            console.log(clues);
             res.locals.clues = clues.map((data) => {
                 data.created_time_display = formatDate(data.created_time);
                 return data;
@@ -76,8 +82,25 @@ const clueController = {
             console.log(clues);
             // 跟踪线索的记录id,对应的就是log-item中的序号
             const logs = await ClueLog.select({ clue_id: id });
+
+
             // 筛选为销售的用户
-            const users = await User.select({ role: 2 });
+            // const users = await User.select({ role: 2 });
+            // 第一步：查找slug为'sales'的角色
+            const salesRole = await Role.select({ slug: 'sales' });
+            console.log(salesRole);
+            if (!salesRole) {
+                throw new Error('No role found with slug "sales".');
+            }
+            // 第二步：使用角色id在userRole表中查找所有拥有该角色的用户id
+            const salesRoleId = await userRole.where({ role_id: salesRole[0].id });
+            const userIds = salesRoleId.map(data => data.user_id);
+            console.log(userIds);
+            // 第三步：找到所有该角色的用户
+            const users = await User.knex().whereIn('id', userIds);
+            console.log(users);
+
+
             res.locals.users = users.map((data) => {
                 return ({
                     id: data.id,
